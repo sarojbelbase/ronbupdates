@@ -3,21 +3,23 @@
 import re
 import pytz
 import tweepy
-from flask import current_app
+from os import environ
+from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
 
 
-def those_tweets(screen_name=current_app.config['TWEETARATI']):
+def those_tweets(screen_name=environ.get('TWEETARATI')):
     # Twitter only allows access to a users most recent 3240 tweets with this method
 
     # authorize twitter, initialize tweepy
     auth = tweepy.OAuthHandler(
-        current_app.config['CONSUMER_KEY'],
-        current_app.config['CONSUMER_SECRET']
+        environ.get('CONSUMER_KEY'),
+        environ.get('CONSUMER_SECRET')
     )
     auth.set_access_token(
 
-        current_app.config['ACCESS_KEY'],
-        current_app.config['ACCESS_SECRET']
+        environ.get('ACCESS_KEY'),
+        environ.get('ACCESS_SECRET')
     )
     api = tweepy.API(auth)
 
@@ -88,7 +90,8 @@ def those_tweets(screen_name=current_app.config['TWEETARATI']):
 
 def remove_url(text):
     modified = re.sub(r"http\S+", "", text)
-    return modified.encode("utf-8").decode("utf-8")
+    again = re.sub(r"[+]", "", modified)
+    return again.encode("utf-8").decode("utf-8")
 
 
 def make_it_utc(datetime_obj):
