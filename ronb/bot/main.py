@@ -38,7 +38,7 @@ def the_tweeter(update, context):
     chat_id = channel_name
     context.job_queue.run_repeating(
         the_decider,
-        interval=600,
+        interval=20,
         first=0,
         context=chat_id,
         name=str(chat_id)
