@@ -1,15 +1,16 @@
+from datetime import datetime
 from ronb.tweet.get import latest_tweets
 from ronb.models import Tweet, Info, session
 
 
 def add_log(tweet_count):
     tweet = session.query(Tweet).order_by(Tweet.timestamp.desc()).first()
-    if tweet:
-        this_info = Info(
-            last_tweet_id=tweet.tweet_id,
-            tweets_added=tweet_count
-        )
-        session.add(this_info)
+    info = session.query(Info).get(1)
+    if tweet and info:
+        info.last_tweet_id = tweet.tweet_id
+        info.tweets_added = tweet_count
+        info.last_checked = datetime.utcnow()
+        session.add(info)
         session.commit()
 
 

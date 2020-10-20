@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 def the_decider(context):
     add_tweet()
     job = context.job
-    count = logs().tweets_added
+    count = int(logs().tweets_added)
     the_list = fetch_tweets()[:count]
     for the_tweet in the_list:
         if the_tweet.image_url == "None":
@@ -38,7 +38,7 @@ def the_tweeter(update, context):
     chat_id = channel_name
     context.job_queue.run_repeating(
         the_decider,
-        interval=30,
+        interval=600,
         first=0,
         context=chat_id,
         name=str(chat_id)
