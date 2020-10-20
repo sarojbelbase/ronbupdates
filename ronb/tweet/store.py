@@ -2,7 +2,7 @@ from ronb.tweet.get import latest_tweets
 from ronb.models import Tweet, Info, session
 
 
-def store_info(tweet_count):
+def add_log(tweet_count):
     tweet = session.query(Tweet).order_by(Tweet.timestamp.desc()).first()
     if tweet:
         this_info = Info(
@@ -11,12 +11,6 @@ def store_info(tweet_count):
         )
         session.add(this_info)
         session.commit()
-
-
-def last_tweet_id():
-    info = session.query(Info).order_by(Info.last_checked.desc()).first()
-    if info:
-        return info.last_tweet_id
 
 
 def add_tweet():
@@ -34,5 +28,5 @@ def add_tweet():
             added_tweet_count += 1
             session.add(this_tweet)
     session.commit()
-    store_info(added_tweet_count)
+    add_log(added_tweet_count)
     return f"Added {added_tweet_count} new tweets!"
