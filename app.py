@@ -7,5 +7,5 @@ if __name__ == '__main__':
     start()
     # print(dir(session.query(Tweet)))
     # print(session.query(Info).all())
-    # print(fetch_tweets())
+    # print(fetch_tweets()[:5][::-1])
     # print(add_tweet())

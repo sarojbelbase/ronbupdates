@@ -23,7 +23,7 @@ def the_decider(context):
     add_tweet()
     job = context.job
     count = int(logs().tweets_added)
-    the_list = fetch_tweets()[:count]
+    the_list = fetch_tweets()[:count][::-1]
     for the_tweet in the_list:
         if the_tweet.image_url == "None":
             context.bot.send_message(job.context, text=the_tweet.tweet)
