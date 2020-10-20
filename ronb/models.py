@@ -6,7 +6,8 @@ from sqlalchemy.orm import Session
 from datetime import datetime
 
 load_dotenv(find_dotenv())
-engine = create_engine(environ.get('DATABASE_URL'))
+engine = create_engine(environ.get('DATABASE_URL'),
+                       connect_args={'check_same_thread': False})
 session = Session(bind=engine)
 BaseModel = declarative_base()
 

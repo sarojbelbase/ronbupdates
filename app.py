@@ -4,7 +4,7 @@ from ronb.models import Tweet, Info, session
 from ronb.bot.main import start
 
 if __name__ == '__main__':
-    # start()
+    start()
     # print(dir(session.query(Tweet)))
     # print(session.query(Info).all())
     # print(fetch_tweets())

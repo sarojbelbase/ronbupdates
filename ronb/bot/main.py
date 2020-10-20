@@ -2,7 +2,8 @@ import logging
 from os import environ
 from dotenv import find_dotenv, load_dotenv
 from telegram.ext import CommandHandler, Updater
-from ronb.tweet.show import fetch_tweets
+from ronb.tweet.show import fetch_tweets, logs
+from ronb.tweet.store import add_tweet
 
 load_dotenv(find_dotenv())
 
@@ -18,8 +19,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def the_decider(context, the_list=fetch_tweets()):
+def the_decider(context):
+    add_tweet()
     job = context.job
+    count = logs().tweets_added
+    the_list = fetch_tweets()[:count]
     for the_tweet in the_list:
         if the_tweet.image_url == "None":
             context.bot.send_message(job.context, text=the_tweet.tweet)
@@ -33,8 +37,13 @@ def the_decider(context, the_list=fetch_tweets()):
 def the_tweeter(update, context):
     chat_id = channel_name
     context.job_queue.run_repeating(
-        the_decider, interval=30,  first=0, context=chat_id, name=str(chat_id))
-    update.message.reply_text("Posted!")
+        the_decider,
+        interval=30,
+        first=0,
+        context=chat_id,
+        name=str(chat_id)
+    )
+    update.message.reply_text("Incoming!")
 
 
 def start():
