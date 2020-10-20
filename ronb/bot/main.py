@@ -9,7 +9,9 @@ load_dotenv(find_dotenv())
 
 token = environ.get('BOT_TOKEN')
 channel_name = environ.get('CHANNEL')
-
+port = int(environ.get('PORT', 5000))
+name = "ronbupdates"
+host = "0.0.0.0"
 
 # Enable logging
 logging.basicConfig(
@@ -56,7 +58,10 @@ def start():
     dp.add_handler(CommandHandler("start", the_tweeter))
 
     # Start the Bot
-    updater.start_polling()
+    
+    # updater.start_polling()
+    updater.start_webhook(listen=host, port=port, url_path=token)
+    updater.bot.setWebhook(f"https://{name}.herokuapp.com/{token}")
 
     # Block until you press Ctrl-C or the process receives SIGINT, SIGTERM or
     # SIGABRT. This should be used most of the time, since start_polling() is
