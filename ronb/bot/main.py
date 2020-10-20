@@ -2,6 +2,7 @@ import logging
 from os import environ
 from dotenv import find_dotenv, load_dotenv
 from telegram.ext import CommandHandler, Updater
+from ronb.tweet.show import fetch_tweets
 
 load_dotenv(find_dotenv())
 
@@ -11,35 +12,29 @@ channel_name = environ.get('CHANNEL')
 
 # Enable logging
 logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
+    format='%(levelname)s :  [ %(asctime)s ] - %(name)s - %(message)s', level=logging.INFO
 )
 
 logger = logging.getLogger(__name__)
 
 
-# Define a few command handlers. These usually take the two arguments update and
-# context. Error handlers also receive the raised TelegramError object in error.
-def start(update, context):
-    update.message.reply_text('Hi! Everything is working')
-
-
-def tweet_with_photo(context):
+def the_decider(context, the_list=fetch_tweets()):
     job = context.job
-    context.bot.send_photo(job.context, photo=the_url, caption=the_message)
-
-
-def tweet_without_photo(context):
-    """Send the RONB Updates."""
-    job = context.job
-    context.bot.send_message(job.context, text=the_message)
+    for the_tweet in the_list:
+        if the_tweet.image_url == "None":
+            context.bot.send_message(job.context, text=the_tweet.tweet)
+        else:
+            context.bot.send_photo(
+                job.context,
+                photo=the_tweet.image_url,
+                caption=the_tweet.tweet)
 
 
 def the_tweeter(update, context):
-
     chat_id = channel_name
     context.job_queue.run_repeating(
-        tweet_without_photo, interval=60, context=chat_id, name=str(chat_id))
-    update.message.reply_text(the_message)
+        the_decider, interval=30,  first=0, context=chat_id, name=str(chat_id))
+    update.message.reply_text("Posted!")
 
 
 def start():
@@ -49,8 +44,7 @@ def start():
     dp = updater.dispatcher
 
     # on different commands - answer in Telegram
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("go", the_tweeter))
+    dp.add_handler(CommandHandler("start", the_tweeter))
 
     # Start the Bot
     updater.start_polling()
