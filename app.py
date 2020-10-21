@@ -18,16 +18,18 @@ app = Flask(__name__)
 
 @app.route(f'/{token}', methods=['POST'])
 def send_to_channel():
-    update = Update.de_json(request.get_json(force=True), bot)
-
-    chat_id = update.message.chat.id
-    msg_id = update.message.message_id
-
-    # Telegram understands UTF-8, so encode text for unicode compatibility
-    text = update.message.text.encode('utf-8').decode()
-    print("got text message :", text)
-
-    bot.send_message(channel_name, text="Hello")
+    add_tweet()
+    set_webhook()
+    count = int(logs().tweets_added)
+    the_list = fetch_tweets()[:count][::-1]
+    for the_tweet in the_list:
+        if the_tweet.image_url == "None":
+            bot.send_message(channel_name, text=the_tweet.tweet)
+        else:
+            bot.send_photo(
+                channel_name,
+                photo=the_tweet.image_url,
+                caption=the_tweet.tweet)
 
 
 @app.route('/webhook', methods=['GET', 'POST'])
