@@ -27,8 +27,7 @@ def send_to_channel():
     text = update.message.text.encode('utf-8').decode()
     print("got text message :", text)
 
-    bot.sendMessage(chat_id=channel_name, text="Hello!",
-                    reply_to_message_id=msg_id)
+    bot.send_message(channel_name, text="Hello")
 
 
 @app.route('/webhook', methods=['GET', 'POST'])
