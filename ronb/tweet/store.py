@@ -21,7 +21,7 @@ def add_tweet():
             Tweet.tweet_id == the_tweet['tweet_id']).first()
         if not the_tweet_id:
             this_tweet = Tweet(
-                tweet_id=the_tweet['tweet_id'],
+                tweet_id=str(the_tweet['tweet_id']),
                 timestamp=the_tweet['timestamp'],
                 image_url=the_tweet['image_url'],
                 tweet=the_tweet['tweet']

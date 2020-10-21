@@ -29,7 +29,7 @@ def latest_tweets(screen_name=environ.get('TWEETARATI')):
         screen_name=screen_name,
         include_rts=False,
         exclude_replies=True,
-        since_id=logs().last_tweet_id,
+        since_id=int(logs().last_tweet_id),
         tweet_mode='extended')
 
     # save most recent tweets
