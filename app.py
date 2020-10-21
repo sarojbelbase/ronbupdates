@@ -30,6 +30,7 @@ def send_to_channel():
                 channel_name,
                 photo=the_tweet.image_url,
                 caption=the_tweet.tweet)
+    return "Executed Sucessfully!"
 
 
 @app.route('/webhook', methods=['GET', 'POST'])
