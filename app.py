@@ -3,6 +3,7 @@ from ronb.tweet.show import fetch_tweets, logs
 from ronb.tweet.store import add_tweet
 from ronb.bot import send_message, send_photo, set_webhook, delete_webhook, get_webhook_info
 from os import environ
+from flask_crontab import Crontab
 
 name = "ronbupdates"
 base_url = f"https://{name}.glitch.me/"
@@ -10,8 +11,10 @@ token = environ.get('BOT_TOKEN')
 secret = environ.get('SECRET_KEY')
 
 app = Flask(__name__)
+crontab = Crontab(app)
 
 
+@crontab.job(minute="5")
 @app.route(f'/{secret}', methods=['POST'])
 def send_to_channel():
     add_tweet()
