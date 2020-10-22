@@ -16,9 +16,9 @@ def handle_error(the_url):
     try:
         response = requests.post(the_url)
         response.raise_for_status()
-        return response.content.decode()
+        return print(response.content.decode())
     except requests.exceptions.HTTPError as error:
-        return error.response.text
+        return print(error.response.text)
 
 
 def send_message(message):

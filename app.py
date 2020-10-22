@@ -5,7 +5,7 @@ from ronb.bot import send_message, send_photo, set_webhook, delete_webhook, webh
 
 name = "ronbupdates"
 host = "0.0.0.0"
-base_url = f"https://{name}.now.sh"
+base_url = f"https://{name}.now.sh/"
 
 
 app = Flask(__name__)
