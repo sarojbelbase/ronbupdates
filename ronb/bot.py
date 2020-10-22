@@ -44,7 +44,7 @@ def send_photo(image_url, caption):
     return handle_error(photo_url)
 
 
-def webhook_info(base_url):
+def get_webhook_info(base_url):
     send_url = 'getWebhookInfo'
     main_url = base_url + send_url
     return handle_error(main_url)

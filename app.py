@@ -1,7 +1,7 @@
 from flask import Flask
 from ronb.tweet.show import fetch_tweets, logs
 from ronb.tweet.store import add_tweet
-from ronb.bot import send_message, send_photo, set_webhook, delete_webhook
+from ronb.bot import send_message, send_photo, set_webhook, delete_webhook, get_webhook_info
 from os import environ
 
 name = "ronbupdates"
@@ -29,15 +29,16 @@ def send_to_channel():
 @app.route('/webhook/set', methods=['GET', 'POST'])
 def webhook_set():
     delete_webhook(base_url)
-    set_webhook(base_url)
-    return "ok"
+    return set_webhook(base_url)
 
 
 @app.route('/webhook/remove', methods=['GET', 'POST'])
 def remove_webhook():
-    delete_webhook(base_url)
-    return "ok"
+    return delete_webhook(base_url)
 
+@app.route('/webhook/info', methods=['GET', 'POST'])
+def webhook_info():
+    return get_webhook_info(base_url)
 
 @app.route('/')
 def index():
