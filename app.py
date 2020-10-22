@@ -5,7 +5,7 @@ from ronb.bot import send_message, send_photo, set_webhook, delete_webhook, get_
 from os import environ
 
 name = "ronbupdates"
-base_url = f"https://{name}.now.sh/"
+base_url = f"https://{name}.glitch.me/"
 token = environ.get('BOT_TOKEN')
 secret = environ.get('SECRET_KEY')
 
