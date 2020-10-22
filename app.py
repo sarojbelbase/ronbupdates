@@ -12,7 +12,7 @@ token = environ.get('BOT_TOKEN')
 app = Flask(__name__)
 
 
-@app.route(f'/{token}', methods=['POST'])
+@app.route(f'/test', methods=['POST'])
 def send_to_channel():
     add_tweet()
     set_webhook(base_url)
@@ -29,16 +29,21 @@ def send_to_channel():
 @app.route('/webhook/set', methods=['GET', 'POST'])
 def webhook_set():
     delete_webhook(base_url)
-    return set_webhook(base_url)
+    set_webhook(base_url)
+    return "ok"
 
 
 @app.route('/webhook/remove', methods=['GET', 'POST'])
 def remove_webhook():
-    return delete_webhook(base_url)
+    delete_webhook(base_url)
+    return "ok"
+
 
 @app.route('/webhook/info', methods=['GET', 'POST'])
 def webhook_info():
-    return get_webhook_info(base_url)
+    get_webhook_info(base_url)
+    return "ok"
+
 
 @app.route('/')
 def index():
