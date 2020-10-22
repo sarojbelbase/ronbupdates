@@ -1,20 +1,17 @@
-from flask import Flask
+from flask import Flask, render_template
 from ronb.tweet.show import fetch_tweets, logs
 from ronb.tweet.store import add_tweet
 from ronb.bot import send_message, send_photo, set_webhook, delete_webhook, get_webhook_info
 from os import environ
-from flask_crontab import Crontab
 
 name = "ronbupdates"
-base_url = f"https://{name}.glitch.me/"
+base_url = f"https://{name}.herokuapp.com/"
 token = environ.get('BOT_TOKEN')
 secret = environ.get('SECRET_KEY')
 
 app = Flask(__name__)
-crontab = Crontab(app)
 
 
-@crontab.job(minute="5")
 @app.route(f'/{secret}', methods=['POST'])
 def send_to_channel():
     add_tweet()
@@ -49,9 +46,9 @@ def webhook_info():
 
 
 @app.route('/')
-def index():
-    return 'Hello From Flask!'
+def home():
+    return render_template('home.html', template_folder='templates')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
