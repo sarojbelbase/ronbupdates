@@ -7,12 +7,12 @@ from os import environ
 name = "ronbupdates"
 base_url = f"https://{name}.now.sh/"
 token = environ.get('BOT_TOKEN')
-
+secret = environ.get('SECRET_KEY')
 
 app = Flask(__name__)
 
 
-@app.route(f'/test', methods=['POST'])
+@app.route(f'/{secret}', methods=['POST'])
 def send_to_channel():
     add_tweet()
     set_webhook(base_url)
