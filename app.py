@@ -1,11 +1,12 @@
 from flask import Flask
 from ronb.tweet.show import fetch_tweets, logs
 from ronb.tweet.store import add_tweet
-from ronb.bot import send_message, send_photo, set_webhook, delete_webhook, webhook_info, token
+from ronb.bot import send_message, send_photo, set_webhook, delete_webhook
+from os import environ
 
 name = "ronbupdates"
-host = "0.0.0.0"
 base_url = f"https://{name}.now.sh/"
+token = environ.get('BOT_TOKEN')
 
 
 app = Flask(__name__)
@@ -26,7 +27,7 @@ def send_to_channel():
 
 
 @app.route('/webhook/set', methods=['GET', 'POST'])
-def set_webhook():
+def webhook_set():
     delete_webhook(base_url)
     set_webhook(base_url)
     return "ok"
@@ -44,4 +45,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(threaded=True, host=host)
+    app.run(threaded=True)
