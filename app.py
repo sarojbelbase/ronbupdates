@@ -1,16 +1,11 @@
-from flask import Flask, request
-from telegram import Bot, Update
+from flask import Flask
 from ronb.tweet.show import fetch_tweets, logs
 from ronb.tweet.store import add_tweet
-from os import environ
+from ronb.bot import send_message, send_photo, set_webhook, delete_webhook, webhook_info, token
 
-token = environ.get('BOT_TOKEN')
-channel_name = environ.get('CHANNEL')
-port = int(environ.get('PORT', 5000))
 name = "ronbupdates"
 host = "0.0.0.0"
-url = f"https://{name}.now.sh"
-bot = Bot(token=token)
+base_url = f"https://{name}.now.sh"
 
 
 app = Flask(__name__)
@@ -19,28 +14,28 @@ app = Flask(__name__)
 @app.route(f'/{token}', methods=['POST'])
 def send_to_channel():
     add_tweet()
-    set_webhook()
+    set_webhook(base_url)
     count = int(logs().tweets_added)
     the_list = fetch_tweets()[:count][::-1]
     for the_tweet in the_list:
         if the_tweet.image_url == "None":
-            bot.send_message(channel_name, text=the_tweet.tweet)
+            send_message(the_tweet.tweet)
         else:
-            bot.send_photo(
-                channel_name,
-                photo=the_tweet.image_url,
-                caption=the_tweet.tweet)
+            send_photo(the_tweet.image_url, the_tweet.tweet)
     return "Executed Sucessfully!"
 
 
-@app.route('/webhook', methods=['GET', 'POST'])
+@app.route('/webhook/set', methods=['GET', 'POST'])
 def set_webhook():
-    bot.delete_webhook()
-    webhook = bot.set_webhook(f'{url}/{token}')
-    if webhook:
-        return "Webhook :)"
-    else:
-        return "Webhook :("
+    delete_webhook(base_url)
+    set_webhook(base_url)
+    return "ok"
+
+
+@app.route('/webhook/remove', methods=['GET', 'POST'])
+def remove_webhook():
+    delete_webhook(base_url)
+    return "ok"
 
 
 @app.route('/')
@@ -49,4 +44,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(threaded=True)
+    app.run(threaded=True, host=host)
