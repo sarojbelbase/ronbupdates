@@ -3,23 +3,20 @@
 import re
 import pytz
 import tweepy
-from os import environ
-from dotenv import find_dotenv, load_dotenv
 from ronb.tweet.show import logs
+from ronb.config import Configuration as creds
 
-load_dotenv(find_dotenv())
 
-
-def latest_tweets(screen_name=environ.get('TWEETARATI')):
+def latest_tweets(screen_name=creds.TWEETARATI):
 
     # authorize twitter, initialize tweepy
     auth = tweepy.OAuthHandler(
-        environ.get('CONSUMER_KEY'),
-        environ.get('CONSUMER_SECRET')
+        creds.CONSUMER_KEY,
+        creds.CONSUMER_SECRET
     )
     auth.set_access_token(
-        environ.get('ACCESS_KEY'),
-        environ.get('ACCESS_SECRET')
+        creds.ACCESS_KEY,
+        creds.ACCESS_SECRET
     )
     api = tweepy.API(auth)
 

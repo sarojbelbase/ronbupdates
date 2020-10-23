@@ -1,10 +1,10 @@
-from ronb.models import Tweet, Info, session
+from ronb.models import Tweet, Info
 
 
 def logs():
     """ Expect to get tweets_added, last_tweet_id, last_checked. """
-    return session.query(Info).order_by(Info.last_checked.desc()).first()
+    return Info.query.order_by(Info.last_checked.desc()).first()
 
 
 def fetch_tweets():
-    return session.query(Tweet).order_by(Tweet.timestamp.desc()).all()
+    return Tweet.query.order_by(Tweet.timestamp.desc()).all()
