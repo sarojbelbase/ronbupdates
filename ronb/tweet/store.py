@@ -18,7 +18,7 @@ def update_log(tweet_count):
 def add_tweet():
     added_tweet_count = 0
     for the_tweet in latest_tweets():
-        the_tweet_id = Tweet.query.filter_by(
+        the_tweet_id = Tweet.query.filter(
             Tweet.tweet_id == the_tweet['tweet_id']).first()
         if not the_tweet_id:
             this_tweet = Tweet(

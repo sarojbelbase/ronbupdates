@@ -48,4 +48,4 @@ def webhook_info():
 
 @main.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', tweets=fetch_tweets()[:3])
