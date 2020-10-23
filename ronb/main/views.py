@@ -7,8 +7,7 @@ from ronb.config import Configuration as creds
 main = Blueprint('main', __name__)
 
 
-name = "ronbupdates"
-base_url = f"https://{name}.herokuapp.com/"
+base_url = f"https://ronbupdates.herokuapp.com/"
 token = creds.BOT_TOKEN
 secret = creds.SECRET_KEY
 
@@ -17,7 +16,7 @@ secret = creds.SECRET_KEY
 
 @main.route('/', methods=['GET'])
 def home():
-    return render_template('home.html', tweets=fetch_tweets()[:2])
+    return render_template('home.html')
 
 
 # Bot Related Works
