@@ -42,7 +42,7 @@ def send_photo(image_url, caption):
 def set_webhook(base_url):
     webhook_url = the_url + 'setWebhook'
     payload = {
-        'url': base_url
+        'url': base_url + token
     }
     return handle_response('post', webhook_url, payload)
 

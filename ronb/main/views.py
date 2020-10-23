@@ -15,14 +15,14 @@ secret = creds.SECRET_KEY
 # Flask Main View
 
 
-@main.route('/')
+@main.route('/', methods=['GET'])
 def home():
     return render_template('home.html', tweets=fetch_tweets()[:2])
 
 
 # Bot Related Works
 
-@main.route(f'/{secret}')
+@main.route(f'/{secret}', methods=['POST'])
 def send_to_channel():
     add_tweet()
     set_webhook(base_url)
