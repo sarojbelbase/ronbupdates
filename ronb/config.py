@@ -8,6 +8,9 @@ load_dotenv(find_dotenv())
 
 class Configuration:
 
+    TWEETARATI = environ.get('TWEETARATI')
+    CHANNEL = environ.get('CHANNEL')
+    BOT_USERNAME = environ.get('BOT_USERNAME')
     SECRET_KEY = environ.get('SECRET_KEY')
     CONSUMER_KEY = environ.get('CONSUMER_KEY')
     CONSUMER_SECRET = environ.get('CONSUMER_SECRET')
