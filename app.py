@@ -3,7 +3,7 @@ from ronb.models import Info, Tweet
 from os import environ
 
 app = create_app()
-port = int(environ.get('PORT', 5000))
+port = int(environ.get('PORT', 8000))
 host = "0.0.0.0"
 
 
