@@ -12,6 +12,15 @@ base_url = f"https://{name}.herokuapp.com/"
 token = creds.BOT_TOKEN
 secret = creds.SECRET_KEY
 
+# Flask Main View
+
+
+@main.route('/')
+def home():
+    return render_template('home.html', tweets=fetch_tweets()[:2])
+
+
+# Bot Related Works
 
 @main.route(f'/{secret}')
 def send_to_channel():
@@ -27,25 +36,24 @@ def send_to_channel():
     return "ok"
 
 
+@main.route(f'/{token}', methods=['POST'])
+def send_to_bot():
+    return {"ok": "true"}
+
+
 @main.route('/webhook/set', methods=['GET', 'POST'])
 def webhook_set():
-    delete_webhook(base_url)
     set_webhook(base_url)
     return "ok"
 
 
 @main.route('/webhook/remove', methods=['GET', 'POST'])
 def remove_webhook():
-    delete_webhook(base_url)
+    delete_webhook()
     return "ok"
 
 
 @main.route('/webhook/info', methods=['GET', 'POST'])
 def webhook_info():
-    get_webhook_info(base_url)
+    get_webhook_info()
     return "ok"
-
-
-@main.route('/')
-def home():
-    return render_template('home.html', tweets=fetch_tweets()[:3])

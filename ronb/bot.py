@@ -1,20 +1,17 @@
+from ronb.config import Configuration as creds
 import requests
-from os import environ
-from urllib.parse import urlencode
-from dotenv import find_dotenv, load_dotenv
 
-load_dotenv(find_dotenv())
-token = environ.get('BOT_TOKEN')
+token = creds.BOT_TOKEN
+channel_name = creds.CHANNEL
 the_url = f"https://api.telegram.org/bot{token}/"
-channel_name = environ.get('CHANNEL')
-port = int(environ.get('PORT', 5000))
-name = "ronbupdates"
-host = "0.0.0.0"
 
 
-def handle_error(the_url):
+def handle_response(type, the_url, payload):
     try:
-        response = requests.post(the_url)
+        if type == 'get':
+            response = requests.get(the_url)
+        else:
+            response = requests.post(the_url, data=payload)
         response.raise_for_status()
         return print(response.content.decode())
     except requests.exceptions.HTTPError as error:
@@ -22,41 +19,39 @@ def handle_error(the_url):
 
 
 def send_message(message):
-    send_url = 'sendMessage?'
-    the_params = {
+    message_url = the_url + 'sendMessage'
+    payload = {
         'chat_id': channel_name,
         'text': message,
         'parse_mode': 'HTML'
     }
-    message_url = the_url + send_url + urlencode(the_params)
-    return handle_error(message_url)
+    return handle_response('post', message_url, payload)
 
 
 def send_photo(image_url, caption):
-    send_url = 'sendPhoto?'
-    the_params = {
+    photo_url = the_url + 'sendPhoto'
+    payload = {
         'chat_id': channel_name,
         'photo': image_url,
         'caption': caption,
         'parse_mode': 'HTML'
     }
-    photo_url = the_url + send_url + urlencode(the_params)
-    return handle_error(photo_url)
-
-
-def get_webhook_info(base_url):
-    send_url = 'getWebhookInfo'
-    main_url = base_url + send_url
-    return handle_error(main_url)
+    return handle_response('post', photo_url, payload)
 
 
 def set_webhook(base_url):
-    send_url = 'setWebhook'
-    main_url = base_url + send_url
-    return handle_error(main_url)
+    webhook_url = the_url + 'setWebhook'
+    payload = {
+        'url': base_url
+    }
+    return handle_response('post', webhook_url, payload)
 
 
-def delete_webhook(base_url):
-    send_url = 'deleteWebhook'
-    main_url = base_url + send_url
-    return handle_error(main_url)
+def get_webhook_info():
+    info_url = the_url + 'getWebhookInfo'
+    return handle_response('get', info_url, None)
+
+
+def delete_webhook():
+    remove_url = the_url + 'deleteWebhook'
+    return handle_response('get', remove_url, None)
