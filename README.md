@@ -59,6 +59,11 @@ A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnep
 <strong><a target="_blank" href="https://t.me/updatesfromronb">telegram channel > t.me/updatesfromronb</a></strong><br>
 
 
+### Disclaimer
+ 
+ This bot or channel is not associated with either **Routine of Nepal Pvt. Ltd.** or [ronbpost](https://ronbpost.com/) , it is only made for informational purpose on widely adopted messaging platform i.e [Telegram](https://telegram.org).
+
+
 ### Made with ❤️ in Nepal. 
 
 
