@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./ronb/static/ronb.png" width="30%" height="auto"><br>
+<img src="./ronb/static/ronb.png" width="22%" height="auto"><br>
 <strong>
 A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnepalbanda/">Routine Of Nepal Banda</a> updates from <a href="https://twitter.com/RONBupdates">twitter</a> as they happen.
 </strong>
