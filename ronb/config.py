@@ -8,14 +8,14 @@ load_dotenv(find_dotenv())
 
 class Configuration:
 
-    TWEETARATI = environ.get('TWEETARATI')
     CHANNEL = environ.get('CHANNEL')
-    BOT_USERNAME = environ.get('BOT_USERNAME')
-    SECRET_KEY = environ.get('SECRET_KEY')
-    CONSUMER_KEY = environ.get('CONSUMER_KEY')
-    CONSUMER_SECRET = environ.get('CONSUMER_SECRET')
-    ACCESS_KEY = environ.get('ACCESS_KEY')
-    ACCESS_SECRET = environ.get('ACCESS_SECRET')
-    SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL')
     BOT_TOKEN = environ.get('BOT_TOKEN')
+    ACCESS_KEY = environ.get('ACCESS_KEY')
+    TWEETARATI = environ.get('TWEETARATI')
+    SECRET_KEY = environ.get('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    CONSUMER_KEY = environ.get('CONSUMER_KEY')
+    BOT_USERNAME = environ.get('BOT_USERNAME')
+    ACCESS_SECRET = environ.get('ACCESS_SECRET')
+    CONSUMER_SECRET = environ.get('CONSUMER_SECRET')
+    SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL')
