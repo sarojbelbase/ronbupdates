@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./ronb/static/ronb.png" width="35%" height="auto"><br>
+<img src="./ronb/static/ronb.png" width="30%" height="auto"><br>
 <strong>
 A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnepalbanda/">Routine Of Nepal Banda</a> updates from <a href="https://twitter.com/RONBupdates">twitter</a> as they happen.
 </strong>
@@ -9,8 +9,8 @@ A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnep
 ### Screenshots
 
 <span align="center">
-<img src="https://github.com/sidbelbase/ronbupdates/raw/master/ronb/static/one.jpg" width="49%" height="auto">
-<img src="https://github.com/sidbelbase/ronbupdates/raw/master/ronb/static/two.jpg" width="49%" height="auto">
+<img src="./ronb/static/one.jpg" width="49%" height="auto">
+<img src="./ronb/static/two.jpg" width="49%" height="auto">
 </span><br>
 
 ### Prerequisites
@@ -59,6 +59,6 @@ A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnep
 <strong><a target="_blank" href="https://t.me/updatesfromronb">telegram channel > t.me/updatesfromronb</a></strong><br>
 
 
-#### Made with ❤️ in Nepal. 
+### Made with ❤️ in Nepal. 
 
 
