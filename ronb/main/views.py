@@ -7,14 +7,14 @@ from ronb.config import Configuration as creds
 main = Blueprint('main', __name__)
 
 
-base_url = f"https://ronbupdates.herokuapp.com/"
+base_url = creds.BASE_URL
 token = creds.BOT_TOKEN
 secret = creds.SECRET_KEY
 
 # Flask Main View
 
 
-@main.route('/', methods=['GET'])
+@main.route('/')
 def home():
     return render_template('home.html')
 
@@ -22,9 +22,9 @@ def home():
 # Bot Related Works
 
 @main.route(f'/{secret}', methods=['POST'])
+# Sends ronbfeeds to the channel
 def send_to_channel():
     add_tweet()
-    set_webhook(base_url)
     count = int(logs().tweets_added)
     the_list = fetch_tweets()[:count][::-1]
     for the_tweet in the_list:
@@ -32,10 +32,11 @@ def send_to_channel():
             send_message(the_tweet.tweet)
         else:
             send_photo(the_tweet.image_url, the_tweet.tweet)
-    return "ok"
+    return {"ok": "true"}
 
 
 @main.route(f'/{token}', methods=['POST'])
+# Sends webhook replies to the bot
 def send_to_bot():
     return {"ok": "true"}
 
@@ -43,16 +44,16 @@ def send_to_bot():
 @main.route('/webhook/set', methods=['GET', 'POST'])
 def webhook_set():
     set_webhook(base_url)
-    return "ok"
+    return {"ok": "true"}
 
 
 @main.route('/webhook/remove', methods=['GET', 'POST'])
 def remove_webhook():
     delete_webhook()
-    return "ok"
+    return {"ok": "true"}
 
 
 @main.route('/webhook/info', methods=['GET', 'POST'])
 def webhook_info():
     get_webhook_info()
-    return "ok"
+    return {"ok": "true"}

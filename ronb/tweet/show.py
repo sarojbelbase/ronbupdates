@@ -1,8 +1,8 @@
 from ronb.models import Tweet, Info
 
-
+# returns logs created by the database
 def logs():
-    """ Expect to get tweets_added, last_tweet_id, last_checked. """
+    """ Column names : tweets_added, last_tweet_id, last_checked. """
     return Info.query.order_by(Info.last_checked.desc()).first()
 
 

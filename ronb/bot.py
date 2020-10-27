@@ -6,9 +6,9 @@ channel_name = creds.CHANNEL
 the_url = f"https://api.telegram.org/bot{token}/"
 
 
-def handle_response(type, the_url, payload):
+def handle_response(method, the_url, payload):
     try:
-        if type == 'get':
+        if method == 'get':
             response = requests.get(the_url)
         else:
             response = requests.post(the_url, data=payload)

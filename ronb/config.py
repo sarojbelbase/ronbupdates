@@ -9,6 +9,7 @@ load_dotenv(find_dotenv())
 class Configuration:
 
     CHANNEL = environ.get('CHANNEL')
+    BASE_URL = environ.get('BASE_URL')
     BOT_TOKEN = environ.get('BOT_TOKEN')
     ACCESS_KEY = environ.get('ACCESS_KEY')
     TWEETARATI = environ.get('TWEETARATI')
