@@ -46,7 +46,7 @@ A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnep
 
 #### Local:
 
-* Run `python3 app.py` OR `flask run`
+`flask run app.py`
 
 #### Production:
 
