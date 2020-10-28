@@ -15,7 +15,9 @@ A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnep
 
 ### Overview
 
-This is just a simple bot that has capability of sending stuffs to channel or groups or any account you like. You could use this bot to whatever stuffs you like. But as an example, I made it to work with a channel only. Setting this project was hard this time, since it involves a database. [I have worked with a telegram-bot in the past](https://github.com/sidbelbase/covidnepal-bot) but during this project, I came across several challenges like cron jobs, python wrappers, VPS servers, etc. I tried integrating various wrappers like [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot), [aiogram](https://github.com/aiogram/aiogram), [pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI), etc. But in the end, I went all-bare i.e working from the scratch. Setting my own webhook, sending photos my own way, sending messages like I want. I have a database placed in middle so that could be used for keeping records or a vue-based news client in the future maybe. I might post Github-gists below for individual breaking down of these stuffs & most important part, for now, the bot won't reply to you, because it's busy doing my appointed works. You could fork this one and make it work like you wanted. If you find this useful email me or create an issue, so that I would know you liked it so much or give it a star. Yes, a star would be fine. Peace!!!
+This is just a simple bot that has capability of sending stuffs to channel or groups or any account you like. You could use this bot to whatever stuffs you like. But as an example, I made it to work with a channel only. Setting this project was hard this time, since it involves a database. [I have worked with a telegram-bot in the past](https://github.com/sidbelbase/covidnepal-bot) but during this project, I came across several challenges like cron jobs, python wrappers, VPS servers, etc.
+
+I tried integrating various wrappers like [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot), [aiogram](https://github.com/aiogram/aiogram), [pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI), etc. **But in the end, I went all-bare i.e worked from the scratch**. Setting my own webhook, sending photos my own way, sending messages like I want. I have a database placed in middle so that could be used for keeping records or a vue-based news client in the future maybe. I have also posted Github-gists below for individual breaking down of these stuffs & most important part for now, the bot won't be able to reply you, because it's busy doing works appointed by me. You could fork this one and make it work like you wanted. If you find this useful, please email me or create an issue, so that I would know you liked it so much or you may just give it a star. Yes, a star would be fine. Peace!!!
 
 ### Prerequisites
 
@@ -33,20 +35,20 @@ This is just a simple bot that has capability of sending stuffs to channel or gr
 
 ### Environment Variables
 
-* TWEETARATI = 'The twitter username to get the tweets'
-* CHANNEL= 'The telegram channel you want to send updates eg. @ronbupdates'
-* SECRET_KEY= 'The secret key from flask.'
-* BOT_TOKEN= 'Bot Token generated from @botfather on telegram'
-* CONSUMER_KEY= 'Twitter's Consumer Key'
-* CONSUMER_SECRET='Twitter's Consumer Secret Key'
-* ACCESS_KEY= 'Twitter's Access Key'
-* ACCESS_SECRET= 'Twitter Access Secret Key'
-* DATABASE_URL=' Database either sqlite or postgres eg: postgres://abcdef:ghijklmn@opqrstuv:5432/wxyz'
+* `TWEETARATI`= 'The twitter username to get the tweets'
+* `CHANNEL` = 'The telegram channel you want to send updates eg. @ronbupdates'
+* `SECRET_KEY` = 'The secret key from flask.'
+* `BOT_TOKEN` = 'Bot Token generated from @botfather on telegram'
+* `CONSUMER_KEY` = 'Twitter's Consumer Key'
+* `CONSUMER_SECRET`= 'Twitter's Consumer Secret Key'
+* `ACCESS_KEY` = 'Twitter's Access Key'
+* `ACCESS_SECRET` = 'Twitter Access Secret Key'
+* `DATABASE_URL` = 'Database either sqlite or postgres eg: postgres://abcdef:ghijklmn@opqrstuv:5432/wxyz'
 
 ### Run & Setups
 
-* [Install & Activate virtual environment in this folder](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/)
-* Add `.env` file in this folder & add above variables
+* [Install & activate virtual environment in this folder](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/)
+* Add `.env` file in this folder & add environment variables given aboove
 * Run `pip3 install -r requirements.txt`
 
 #### Local:
@@ -63,6 +65,10 @@ This is just a simple bot that has capability of sending stuffs to channel or gr
 <strong><a target="_blank" href="https://t.me/routineofnepalbot">telegram bot > t.me/routineofnepalbot</a></strong><br>
 <strong><a target="_blank" href="https://t.me/updatesfromronb">telegram channel > t.me/updatesfromronb</a></strong><br>
 
+### Gists
+
+<strong><a target="_blank" href="https://gist.github.com/sidbelbase/74db2176cfcd686bcacfb14386796359">fetch_tweets.py</a></strong><br>
+<strong><a target="_blank" href="https://gist.github.com/sidbelbase/383744970eb684941b314e95667c37bd">models.py</a></strong><br>
 
 ### Disclaimer
  
