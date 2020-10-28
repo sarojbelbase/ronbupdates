@@ -13,6 +13,10 @@ A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnep
 <img src="./ronb/static/two.jpg" width="49%" height="auto">
 </span><br>
 
+### Overview
+
+This is just a simple bot that has capability of sending stuffs to channel or groups or any account you like. You could use this bot to whatever stuffs you like. But as an example, I made it to work with a channel only. Setting this project was hard this time, since it involves a database. [I have worked with a telegram-bot in the past](https://github.com/sidbelbase/covidnepal-bot) but during this project, I came across several challenges like cron jobs, python wrappers, VPS servers, etc. I tried integrating various wrappers like [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot), [aiogram](https://github.com/aiogram/aiogram), [pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI), etc. But in the end, I went all-bare i.e working from the scratch. Setting my own webhook, sending photos my own way, sending messages like I want. I have a database placed in middle so that could be used for keeping records or a vue-based news client in the future maybe. I might post Github-gists below for individual breaking down of these stuffs & most important part, for now, the bot won't reply to you, because it's busy doing my appointed works. You could fork this one and make it work like you wanted. If you find this useful email me or create an issue, so that I would know you liked it so much or give it a star. Yes, a star would be fine. Peace!!!
+
 ### Prerequisites
 
 * Python 3 or higher
@@ -41,8 +45,9 @@ A telegram-bot that sends <a href="https://www.facebook.com/officialroutineofnep
 
 ### Run & Setups
 
-* Install & Activate virtual environment in this folder
-* `pip3 install -r requirements.txt`
+* [Install & Activate virtual environment in this folder](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/)
+* Add `.env` file in this folder & add above variables
+* Run `pip3 install -r requirements.txt`
 
 #### Local:
 
